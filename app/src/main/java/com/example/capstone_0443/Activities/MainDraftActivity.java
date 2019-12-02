@@ -9,12 +9,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
-
 import com.example.capstone_0443.Model.Door;
 import com.example.capstone_0443.Model.History;
 import com.example.capstone_0443.Model.PIR;
@@ -29,12 +27,9 @@ import java.util.Date;
 
 public class MainDraftActivity extends AppCompatActivity {
 
-    String text;
-    EditText ed[];
     public String dateHour, dateDay;
-    ArrayAdapter<CharSequence> adapterTemp;
     int j = 0;
-    int a;
+    EditText editText,editTextSecond;
 
     private String realTime() {
         Date date = new Date();
@@ -131,7 +126,7 @@ public class MainDraftActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         Integer door = Integer.parseInt(extras.getString("door"));
         Integer pir = Integer.parseInt(extras.getString("pir"));
-        Integer temp = Integer.parseInt(extras.getString("temperature"));
+       final Integer temp = Integer.parseInt(extras.getString("temperature"));
 
 
         layoutDoor = findViewById(R.id.layoutDoor);
@@ -240,7 +235,7 @@ public class MainDraftActivity extends AppCompatActivity {
         layoutSave.addView(save);
 //TEMP
 
-
+/*
         for (int i = 1; i <= temp; i++) {
             final int a = i;
             final EditText editText = new EditText(this);
@@ -262,9 +257,55 @@ public class MainDraftActivity extends AppCompatActivity {
                 }
             });
 
-
         }
+*/
 
+        // Temp
+
+        editText = new EditText(this);
+        final int a =1;
+        editText.setId(a);
+        editText.setHint("Temp " + " " + a);
+        editText.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        LinearLayout.LayoutParams paramText = (LinearLayout.LayoutParams) save.getLayoutParams();
+        paramText.weight = 1.0f;
+        editText.setLayoutParams(paramText);
+        layoutTemp.addView(editText);
+
+
+        final int b =2;
+        if(temp==2){
+
+            editTextSecond = new EditText(this);
+
+            editTextSecond.setId(b);
+            editTextSecond.setHint("Temp " + " " + b);
+            editTextSecond.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+            LinearLayout.LayoutParams paramTextSecond = (LinearLayout.LayoutParams) save.getLayoutParams();
+            paramTextSecond.weight = 1.0f;
+            editTextSecond.setLayoutParams(paramTextSecond);
+            layoutTemp.addView(editTextSecond);
+        }
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Date dateTemp = new Date();
+                dateHour = String.format("%tT", dateTemp);
+                dateDay = String.format("%tF", dateTemp);
+
+                if(temp==1){
+                    newTemperature("Temp" + a, "" + editText.getText(), "" + dateHour, "" + dateDay);
+                    newHistoryTemps("Temp" + a, "" + dateDay, "" + dateHour, "" + editText.getText());
+                }
+                else if(temp==2){
+                    newTemperature("Temp" + a, "" + editText.getText(), "" + dateHour, "" + dateDay);
+                    newHistoryTemps("Temp" + a, "" + dateDay, "" + dateHour, "" + editText.getText());
+                    newTemperature("Temp" + b, "" + editTextSecond.getText(), "" + dateHour, "" + dateDay);
+                    newHistoryTemps("Temp" + b, "" + dateDay, "" + dateHour, "" + editTextSecond.getText());
+                }
+
+            }
+        });
 
     }
 
