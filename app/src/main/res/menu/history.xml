@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<item
+    android:id="@+id/door"
+    android:title="Door"
+    android:icon="@drawable/door"></item>
+    <item
+        android:id="@+id/pir"
+        android:title="Pir"
+        android:icon="@drawable/pir"></item>
+    <item
+        android:id="@+id/temperature"
+        android:title="Temperature"
+        android:icon="@drawable/temperature"></item>
+</menu>

@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">Capstone-0443</string>
+    <string name="title_door">DOOR</string>
+    <string name="title_temperature">TEMPERATURE</string>
+    <string name="title_pir">PIR</string>
+    <string name="title_logs">LOGS</string>
+    <string name="textview">TextView</string>
+    <string-array name="temperature">
+        <item>1</item>
+        <item>2</item>
+
+
+    </string-array>
+    <string-array name="temp_degree">
+        <item>0</item>
+        <item>5</item>
+        <item>10</item>
+        <item>15</item>
+        <item>20</item>
+        <item>25</item>
+        <item>30</item>
+        <item>35</item>
+        <item>40</item>
+        <item>45</item>
+    </string-array>
+    <string-array name="door">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+
+    </string-array>
+    <string-array name="pir">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+
+    </string-array>
+</resources>

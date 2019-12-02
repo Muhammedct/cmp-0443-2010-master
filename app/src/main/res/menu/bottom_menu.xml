@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/door"
+        android:icon="@drawable/door"
+        android:title="@string/title_door"></item>
+    <item
+        android:id="@+id/pir"
+        android:icon="@drawable/pir"
+        android:title="@string/title_pir">
+
+    </item>
+    <item
+        android:id="@+id/temperature"
+        android:icon="@drawable/temperature"
+        android:title="@string/title_temperature">
+
+    </item>
+    <item
+        android:id="@+id/logs"
+        android:icon="@drawable/history"
+        android:title="@string/title_logs">
+
+    </item>
+
+
+
+</menu>
+
