@@ -15,7 +15,7 @@
         app:srcCompat="@drawable/security" />
 
        <EditText
-        android:id="@+id/etUser"
+        android:id="@+id/email"
         android:layout_width="250dp"
         android:layout_height="40dp"
         android:layout_alignParentTop="true"
@@ -24,14 +24,14 @@
         android:background="#11000000"
         android:drawableLeft="@drawable/email"
         android:ems="10"
-        android:hint=" Username"
-        android:inputType="textPersonName"
+        android:hint=" E-mail"
+        android:inputType="textEmailAddress"
         android:textColor="@color/colorWhite"
         android:textColorHint="@color/colorWhite"
         android:textSize="16sp" />
 
     <EditText
-        android:id="@+id/etPass"
+        android:id="@+id/password"
         android:layout_width="250dp"
         android:layout_height="40dp"
         android:layout_marginTop="300dp"
@@ -57,14 +57,15 @@
         android:layout_marginBottom="130dp">
 
         <RelativeLayout
-            android:id="@+id/loginButton"
+
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:clickable="true"
-            android:onClick="onClick">
+            android:clickable="true">
 
             <TextView
+                android:id="@+id/loginButton"
                 android:layout_width="wrap_content"
+                android:clickable="true"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:text="Login"
@@ -89,13 +90,13 @@
         android:layout_marginBottom="50dp">
 
         <RelativeLayout
-            android:id="@+id/registerButton"
+
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:clickable="true"
-            android:onClick="onClick">
+            android:clickable="true">
 
             <TextView
+                android:id="@+id/registerButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
@@ -109,14 +110,12 @@
     </androidx.cardview.widget.CardView>
 
 
-
-
     <CheckBox
         android:id="@+id/chkBeniHatirla"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/etUser"
+        android:layout_alignStart="@+id/email"
         android:layout_marginBottom="194dp"
         android:text="Beni Hatırla"
         android:buttonTint="@color/colorWhite"
