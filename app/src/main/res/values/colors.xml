@@ -13,6 +13,6 @@
     <color name="pink">#fe104d</color>
     <color name="colorWhite">#fcfafb</color>
     <color name="colorCard">#98ecf5</color>
-
+    <color name="userButtonColor">#Ffcc00</color>
     <color name="black_overlay">#66000000</color>
 </resources>

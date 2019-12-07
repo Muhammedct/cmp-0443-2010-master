@@ -14,9 +14,23 @@
         }
       },
       "oauth_client": [
-
         {
-
+          "client_id": "694387618006-sd3l2bulclvalrm8mgeudkp44dmas88t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.capstone_0443",
+            "certificate_hash": "0084e52708031121029e31130033fdda6a522275"
+          }
+        },
+        {
+          "client_id": "694387618006-qgc466ut36gsa17ht64ko6huqrlua1h8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.capstone_0443",
+            "certificate_hash": "0d3c4cea6dd48875ee1d98e9330317a54b2ee084"
+          }
+        },
+        {
           "client_id": "694387618006-qr7862q88i6nbv42icacvtv4rs9skn98.apps.googleusercontent.com",
           "client_type": 3
         }
