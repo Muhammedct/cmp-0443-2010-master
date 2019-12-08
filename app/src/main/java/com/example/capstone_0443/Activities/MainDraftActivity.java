@@ -1,5 +1,6 @@
 package com.example.capstone_0443.Activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -18,6 +19,8 @@ import com.example.capstone_0443.Model.History;
 import com.example.capstone_0443.Model.PIR;
 import com.example.capstone_0443.Model.Temperature;
 import com.example.capstone_0443.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.example.capstone_0443.SendMail;
@@ -27,9 +30,15 @@ import java.util.Date;
 
 public class MainDraftActivity extends AppCompatActivity {
 
+
+    private FirebaseAuth.AuthStateListener authStateListener;
+    private FirebaseAuth auth;
     public String dateHour, dateDay;
     int j = 0;
     EditText editText,editTextSecond;
+    LinearLayout layoutDoor, layoutPir, layoutTemp, layoutSave;
+    FirebaseDatabase testDb = FirebaseDatabase.getInstance();
+    DatabaseReference testRef = testDb.getReference();
 
     private String realTime() {
         Date date = new Date();
@@ -74,48 +83,70 @@ public class MainDraftActivity extends AppCompatActivity {
     }
 
 
-    LinearLayout layoutDoor, layoutPir, layoutTemp, layoutSave;
-    FirebaseDatabase testDb = FirebaseDatabase.getInstance();
-    DatabaseReference testRef = testDb.getReference();
 
-    private void newDoor(String name, String status, String hour, String day) {
-        Door doors = new Door(name, day, hour, status);
-        testRef.child("Doors").child(name).setValue(doors);
+    private void newDoor(String userName,String doorName, String status, String hour, String day) {
+        Door doors = new Door(userName,doorName, day, hour, status);
+        testRef.child(userName).child("Doors").child(doorName).setValue(doors);
     }
 
-    private void newTemperature(String name, String status, String hour, String day) {
-        Temperature temperature = new Temperature(status, day, hour, name);
+    private void newTemperature(String userName,String temperatureName, String status, String hour, String day) {
+        Temperature temperature = new Temperature(userName,status, day, hour, temperatureName);
 
-        testRef.child("Temps").child(name).setValue(temperature);
+        testRef.child(userName).child("Temps").child(temperatureName).setValue(temperature);
 
         // DatabaseReference tempRef = testRef.child("Temps").child(name);
         //  tempRef.setValue(temperature);
 
     }
-
-
-    private void newHistoryDoor(String name, String day, String hour, String status) {
-        History logs = new History(name, day, hour, status);
-        testRef.child("Logs").child(day).child(name).child(hour).setValue(logs);
+    private void newPIR(String userName,String status, String pirName, String hour, String day) {
+        PIR Pirs = new PIR(userName,status, pirName, hour, day);
+        testRef.child(userName).child("PIRs").child(pirName).setValue(Pirs);
     }
 
-    private void newHistoryPir(String name, String day, String hour, String status) {
-        History logs = new History(name, day, hour, status);
-        testRef.child("Logs").child(day).child(name).child(hour).setValue(logs);
+
+
+    private void newHistoryDoor(String userName,String historyName, String day, String hour, String status) {
+        History logs = new History(userName,historyName, day, hour, status);
+        testRef.child(userName).child("Logs").child(day).child(historyName).child(hour).setValue(logs);
     }
 
-    private void newHistoryTemps(String name, String day, String hour, String status) {
-        History logs = new History(name, day, hour, status);
-        testRef.child("Logs").child(day).child(name).child(hour).setValue(logs);
+    private void newHistoryPir(String userName,String historyName, String day, String hour, String status) {
+        History logs = new History(userName,historyName, day, hour, status);
+        testRef.child(userName).child("Logs").child(day).child(historyName).child(hour).setValue(logs);
     }
 
-    private void newPIR(String status, String name, String hour, String day) {
-        PIR Pirs = new PIR(status, name, hour, day);
-        testRef.child("PIRs").child(name).setValue(Pirs);
+    private void newHistoryTemps(String userName,String historyName, String day, String hour, String status) {
+        History logs = new History(userName,historyName, day, hour, status);
+        testRef.child(userName).child("Logs").child(day).child(historyName).child(hour).setValue(logs);
     }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        //-------
+
+        auth = FirebaseAuth.getInstance();
+        authStateListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                // Eğer geçerli bir kullanıcı oturumu yoksa LoginActivity e geçilir.
+                // Oturum kapatma işlemi yapıldığında bu sayede LoginActivity e geçilir.
+                if (user == null) {
+                    Log.e("LogOn", "Login olmuş user yok");
+
+                    //startActivity(new Intent(Logs.this, LoginActivity.class));
+                    //finish();
+                }
+            }
+        };
+        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        final String email = user.getUid();
+        Log.e("LogIn", "User Email : ---- "+user.getEmail());
+
+
+        //-------
 
         Date date = new Date();
         dateHour = String.format("%tT", date);
@@ -150,13 +181,14 @@ public class MainDraftActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     //changeDoor(a);
                     Date date = new Date();
+                    Log.e("LogIn", "User Email : "+email+"---- "+user.getEmail() + "----" +user.getDisplayName() +   "prid"+user.getProviderId() + "uid"+user.getUid());
                     dateHour = String.format("%tT", date);
                     dateDay = String.format("%tF", date);
                     if (j % 2 == 0) {
                         if (realHour() >= 17 || realHour() <= 6)  //Control your emulator date , it could be different.. !!
                             sendEmailforDoors("opened", "Door" + a); // only sent mail between 17:00 - 06:00
-                        newDoor("Door" + a, "Opened", "" + dateHour, "" + dateDay);
-                        newHistoryDoor("Door" + a, "" + dateDay, "" + dateHour, "Opened");
+                        newDoor(""+email,"Door" + a, "Opened", "" + dateHour, "" + dateDay);
+                        newHistoryDoor(""+email, "Door" + a, "" + dateDay, ""+dateHour,"Opened");
                         Toast.makeText(getApplicationContext(), "" +
                                 "Opened", Toast.LENGTH_SHORT).show();
                         button.setBackgroundColor(Color.parseColor("#ba160c"));
@@ -166,8 +198,8 @@ public class MainDraftActivity extends AppCompatActivity {
                     } else {
                         if (realHour() >= 17 && realHour() < 6)
                             sendEmailforDoors("closed", "Door" + a);
-                        newDoor("Door" + a, "Closed", "" + dateHour, "" + dateDay);
-                        newHistoryDoor("Door" + a, "" + dateDay, "" + dateHour, "Closed");
+                        newDoor(""+email,"Door" + a, "Closed", "" + dateHour, "" + dateDay);
+                        newHistoryDoor(""+email, "Door" + a, "" + dateDay, ""+dateHour,"Closed");
                         Toast.makeText(getApplicationContext(), "" +
                                 "Closed", Toast.LENGTH_SHORT).show();
                         button.setBackgroundColor(Color.parseColor("#00ff00"));
@@ -201,8 +233,8 @@ public class MainDraftActivity extends AppCompatActivity {
                     if (j % 2 == 0) {
                         if (realHour() >= 17 || realHour() <= 6)
                             sendEmailforPir("opened", "Pir" + a);
-                        newPIR("Detected", "Pir" + a, "" + dateHour, "" + dateDay);
-                        newHistoryPir("Pir" + a, "" + dateDay, "" + dateHour, "Detected");
+                        newPIR(""+email,"Detected", "Pir" + a, "" + dateHour, "" + dateDay);
+                        newHistoryPir(""+email, "Pir" + a, "" + dateDay, ""+dateHour,"Detected");
                         Toast.makeText(getApplicationContext(), "" +
                                 "Detected", Toast.LENGTH_SHORT).show();
                         button.setBackgroundColor(Color.parseColor("#ba160c"));
@@ -211,8 +243,8 @@ public class MainDraftActivity extends AppCompatActivity {
                     } else {
                         if (realHour() >= 17 || realHour() <= 6)
                             sendEmailforPir("closed", "Pir" + a);
-                        newPIR("Not Detected", "Pir" + a, "" + dateHour, "" + dateDay);
-                        newHistoryPir("Pir" + a, "" + dateDay, "" + dateHour, "Not Detected");
+                        newPIR(""+email,"Not Detected", "Pir" + a, "" + dateHour, "" + dateDay);
+                        newHistoryPir(""+email, "Pir" + a, "" + dateDay, ""+dateHour,"Not Detected");
                         Toast.makeText(getApplicationContext(), "" +
                                 "Not Detected", Toast.LENGTH_SHORT).show();
                         button.setBackgroundColor(Color.parseColor("#00ff00"));
@@ -294,14 +326,14 @@ public class MainDraftActivity extends AppCompatActivity {
                 dateDay = String.format("%tF", dateTemp);
 
                 if(temp==1){
-                    newTemperature("Temp" + a, "" + editText.getText(), "" + dateHour, "" + dateDay);
-                    newHistoryTemps("Temp" + a, "" + dateDay, "" + dateHour, "" + editText.getText());
+                    newTemperature(""+email,"Temp" + a, "" + editText.getText(), "" + dateHour, "" + dateDay);
+                    newHistoryTemps("" + email , "" + "Temp"+a, "" + dateDay, "" + dateHour,""+editText.getText());
                 }
                 else if(temp==2){
-                    newTemperature("Temp" + a, "" + editText.getText(), "" + dateHour, "" + dateDay);
-                    newHistoryTemps("Temp" + a, "" + dateDay, "" + dateHour, "" + editText.getText());
-                    newTemperature("Temp" + b, "" + editTextSecond.getText(), "" + dateHour, "" + dateDay);
-                    newHistoryTemps("Temp" + b, "" + dateDay, "" + dateHour, "" + editTextSecond.getText());
+                    newTemperature(""+email,"Temp" + a, "" + editText.getText(), "" + dateHour, "" + dateDay);
+                    newHistoryTemps("" + email , "" + "Temp"+a, "" + dateDay, "" + dateHour,""+editText.getText());
+                    newTemperature(""+email,"Temp" + b, "" + editTextSecond.getText(), "" + dateHour, "" + dateDay);
+                    newHistoryTemps("" + email , "" + "Temp"+b, "" + dateDay, "" + dateHour,""+editText.getText());
                 }
 
             }

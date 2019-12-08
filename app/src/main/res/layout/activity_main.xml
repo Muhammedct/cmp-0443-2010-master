@@ -17,30 +17,7 @@
         android:layout_gravity="center"
         app:srcCompat="@drawable/security" />
 
-    <Button
-        android:id="@+id/buttonAndroid"
-        android:layout_width="162dp"
-        android:layout_height="66dp"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/custom_button"
-        android:text="Androıd"
-        android:textColor="@color/colorWhite"
-        android:textSize="20dp"
-        android:layout_gravity="center"
 
-       />
-
-    <Button
-        android:id="@+id/buttontest"
-        android:layout_width="162dp"
-        android:layout_marginTop="15dp"
-        android:textColor="@color/colorWhite"
-        android:layout_height="66dp"
-        android:background="@drawable/custom_button"
-        android:text="arduıno"
-        android:textSize="20dp"
-        android:layout_gravity="center"
-         />
     <Button
         android:id="@+id/buttonLogin"
         android:layout_width="162dp"

@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
 
 
    // BottomNavigationView bottomNavigationView;
-    Button buttonSimulation,buttonAndroid,buttonLogin,buttonRegister;
+    Button buttonLogin,buttonRegister;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         FirebaseMessaging.getInstance().subscribeToTopic("SELAM");
@@ -23,29 +23,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        buttonSimulation=findViewById(R.id.buttontest);
-        buttonAndroid=findViewById(R.id.buttonAndroid);
+
         buttonLogin=findViewById(R.id.buttonLogin);
         buttonRegister=findViewById(R.id.buttonRegister);
 
-        buttonAndroid.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, AndroidActivity.class);
-                startActivity(intent);
 
-            }
-        });
-
-        buttonSimulation.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent intent = new Intent(MainActivity.this, ArduinoActivity.class);
-                startActivity(intent);
-
-            }
-        });
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

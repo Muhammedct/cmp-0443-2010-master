@@ -2,19 +2,35 @@ package com.example.capstone_0443.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+<<<<<<< Updated upstream
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+=======
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+>>>>>>> Stashed changes
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
+<<<<<<< Updated upstream
 import android.widget.Toast;
 import com.example.capstone_0443.R;
 
 import java.security.PublicKey;
+=======
+import android.widget.TextView;
+import android.widget.Toast;
+import com.example.capstone_0443.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+>>>>>>> Stashed changes
 
 public class LoginActivity extends AppCompatActivity {
     EditText etPass, etUser;
@@ -24,8 +40,70 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
+<<<<<<< Updated upstream
         etPass =  findViewById(R.id.etPass);
         etUser =  findViewById(R.id.etUser);
+=======
+        password =  findViewById(R.id.password);
+        email =  findViewById(R.id.email);
+        loginButton = findViewById(R.id.loginButton);
+        registerButton = findViewById(R.id.registerButton);
+        auth = FirebaseAuth.getInstance();
+        registerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                login();
+            }
+        });
+
+
+     }
+    private void login() {
+        userEmail = email.getText().toString().trim();
+        userPassword = password.getText().toString().trim();
+
+        auth.signInWithEmailAndPassword(userEmail, userPassword)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d(TAG, "signInWithEmail:success");
+                            //FirebaseUser user = auth.getCurrentUser();
+
+<<<<<<< HEAD
+                            Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+=======
+                            Intent intent = new Intent(LoginActivity.this,UserActivity.class);
+>>>>>>> 337d4c16ae8acee5eacf20d56f9332cc0f256960
+                            Toast.makeText(getApplicationContext(),"başarılı",Toast.LENGTH_SHORT).show();
+                            startActivity(intent);
+                            //updateUI(user);
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w(TAG, "signInWithEmail:failure", task.getException());
+                            Toast.makeText(LoginActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                            // updateUI(null);
+                        }
+
+                        // ...
+                    }
+                });
+
+
+    }
+
+>>>>>>> Stashed changes
     }
 
 
