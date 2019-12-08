@@ -2,21 +2,33 @@ package com.example.capstone_0443.Model;
 
 public class Door {
 
+    public String userName;
     public String doorStatus;
     public String doorName;
     public String doorDay;
     public String doorHour;
 
 
-    public Door(){};
+    public Door() {
+    }
 
-    public Door(String doorStatus, String doorName, String doorHour, String doorDay) {
+
+
+    public Door(String userName, String doorStatus, String doorName, String doorHour, String doorDay) {
+        this.userName = userName;
         this.doorStatus = doorStatus;
         this.doorName = doorName;
         this.doorHour = doorHour;
         this.doorDay = doorDay;
     }
 
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
     public String getDoorHour() {
         return doorHour;

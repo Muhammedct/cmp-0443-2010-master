@@ -2,7 +2,7 @@ package com.example.capstone_0443.Model;
 
 public class Temperature {
 
-
+    public String userName;
     public String temp;
     public String tempDay;
     public String tempHour;
@@ -11,11 +11,20 @@ public class Temperature {
 
     public Temperature(){};
 
-    public Temperature(String temp, String tempDay, String tempHour, String tempName) {
+    public Temperature(String userName,String temp, String tempDay, String tempHour, String tempName) {
+        this.userName = userName;
         this.temp = temp;
         this.tempDay = tempDay;
         this.tempHour = tempHour;
         this.tempName = tempName;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getTempDay() {

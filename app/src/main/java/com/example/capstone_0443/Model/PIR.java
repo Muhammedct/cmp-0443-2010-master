@@ -1,7 +1,7 @@
 package com.example.capstone_0443.Model;
 
 public class PIR {
-
+    public String userName;
     public String pirStatus;
     public String pirName;
     public String pirHour;
@@ -9,11 +9,19 @@ public class PIR {
 
     public PIR(){};
 
-    public PIR(String pirStatus, String pirName, String pirHour, String pirDay) {
+    public PIR(String userName,String pirStatus, String pirName, String pirHour, String pirDay) {
         this.pirStatus = pirStatus;
         this.pirName = pirName;
         this.pirHour = pirHour;
         this.pirDay = pirDay;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getPirHour() {

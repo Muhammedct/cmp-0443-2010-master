@@ -2,17 +2,30 @@ package com.example.capstone_0443.Model;
 
 public class History {
 
-public String historyHour;
-public String historyDay;
-public String historyName;
-public String status;
+    public String userName;
+    public String historyHour;
+    public String historyDay;
+    public String historyName;
+    public String status;
 
-    public History(){};
-    public History(String historyName, String historyDay, String historyHour, String status) {
+    public History() {
+    }
+
+
+    public History(String userName, String historyName, String historyDay, String historyHour, String status) {
+        this.userName = userName;
         this.historyHour = historyHour;
         this.historyDay = historyDay;
         this.historyName = historyName;
         this.status = status;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getHistoryHour() {
