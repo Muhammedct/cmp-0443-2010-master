@@ -15,6 +15,7 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="No Filters" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< Updated upstream
     <list default="true" id="74a6f0de-db98-417c-9422-4ed364e3f416" name="Default Changelist" comment="">
 <<<<<<< Updated upstream
 =======
@@ -154,6 +155,10 @@
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
 >>>>>>> 337d4c16ae8acee5eacf20d56f9332cc0f256960
 >>>>>>> Stashed changes
+=======
+    <list default="true" id="18ed3bad-2137-4a35-879e-9e10ef3db568" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
+>>>>>>> Stashed changes
     </list>
     <ignored path="$PROJECT_DIR$/build/classes/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -169,21 +174,12 @@
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
-        <projects_view>
-          <tree_state>
-            <expand>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="Capstone-0443" type="f1a62948:ProjectNode" />
-              </path>
-            </expand>
-            <select />
-          </tree_state>
-        </projects_view>
+        <projects_view />
       </state>
     </system>
   </component>
   <component name="FileEditorManager">
+<<<<<<< Updated upstream
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
 <<<<<<< Updated upstream
@@ -299,6 +295,14 @@
             <state relative-caret-position="238">
               <caret line="14" column="36" lean-forward="true" selection-start-line="14" selection-start-column="36" selection-end-line="14" selection-end-column="36" />
 >>>>>>> 337d4c16ae8acee5eacf20d56f9332cc0f256960
+=======
+    <leaf>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/build.gradle">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="383">
+              <caret line="42" column="1" lean-forward="true" selection-start-line="42" selection-start-column="1" selection-end-line="42" selection-end-column="1" />
+>>>>>>> Stashed changes
             </state>
           </provider>
         </entry>
@@ -331,12 +335,16 @@
               </folding>
 =======
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/capstone_0443/Activities/UserActivity.java">
+        <entry file="file://$PROJECT_DIR$/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
             <state relative-caret-position="221">
               <caret line="20" column="55" lean-forward="true" selection-start-line="20" selection-start-column="55" selection-end-line="20" selection-end-column="55" />
 >>>>>>> 337d4c16ae8acee5eacf20d56f9332cc0f256960
             </state>
+=======
+            <state relative-caret-position="-178" />
+>>>>>>> Stashed changes
           </provider>
         </entry>
       </file>
@@ -430,8 +438,11 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/capstone_0443/Activities/MainActivity.java" />
 =======
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/capstone_0443/Activities/MainDraftActivity.java" />
+<<<<<<< Updated upstream
         <option value="$PROJECT_DIR$/app/build.gradle" />
 >>>>>>> 337d4c16ae8acee5eacf20d56f9332cc0f256960
+=======
+>>>>>>> Stashed changes
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/colors.xml" />
 >>>>>>> Stashed changes
@@ -451,6 +462,7 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/capstone_0443/Activities/UserActivity.java" />
 >>>>>>> 337d4c16ae8acee5eacf20d56f9332cc0f256960
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/capstone_0443/Activities/LoginActivity.java" />
+<<<<<<< Updated upstream
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/capstone_0443/Model/History.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/capstone_0443/Model/Door.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/show.xml" />
@@ -463,6 +475,9 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/capstone_0443/Model/Temperature.java" />
 >>>>>>> Stashed changes
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/capstone_0443/Activities/MainDraftActivity.java" />
+=======
+        <option value="$PROJECT_DIR$/app/build.gradle" />
+>>>>>>> Stashed changes
       </list>
     </option>
   </component>
@@ -492,6 +507,7 @@
           <expand>
             <path>
               <item name="Capstone-0443" type="1abcf292:AndroidViewProjectNode" />
+<<<<<<< Updated upstream
               <item name="app" type="feadf853:AndroidModuleNode" />
             </path>
             <path>
@@ -574,6 +590,9 @@
               <item name="res" type="d4f16f75:AndroidResFolderNode" />
               <item name="layout" type="ddeffd01:AndroidResFolderTypeNode" />
 >>>>>>> 337d4c16ae8acee5eacf20d56f9332cc0f256960
+=======
+              <item name="Gradle Scripts" type="ae0cef3a:AndroidBuildScriptsGroupNode" />
+>>>>>>> Stashed changes
             </path>
           </expand>
           <select />
@@ -587,32 +606,6 @@
             <path>
               <item name="Capstone-0443" type="b2602c69:ProjectViewProjectNode" />
               <item name="cmp-0443-2010-master" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-            </path>
-            <path>
-              <item name="Capstone-0443" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cmp-0443-2010-master" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-            </path>
-            <path>
-              <item name="Capstone-0443" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cmp-0443-2010-master" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Capstone-0443" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cmp-0443-2010-master" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Capstone-0443" type="b2602c69:ProjectViewProjectNode" />
-              <item name="cmp-0443-2010-master" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="libs" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -757,6 +750,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
+<<<<<<< Updated upstream
 <<<<<<< HEAD
     <frame x="-8" y="-8" width="1552" height="840" extended-state="0" />
     <editor active="true" />
@@ -765,6 +759,9 @@
       <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.1735925" />
 =======
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+=======
+    <frame x="-8" y="-8" width="1552" height="840" extended-state="0" />
+>>>>>>> Stashed changes
     <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
@@ -1205,6 +1202,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< Updated upstream
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/capstone_0443/Activities/AndroidActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -1276,6 +1274,8 @@
     </entry>
 =======
 >>>>>>> 337d4c16ae8acee5eacf20d56f9332cc0f256960
+=======
+>>>>>>> Stashed changes
     <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-28/android/os/Looper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="382">
@@ -1534,6 +1534,18 @@
         <state relative-caret-position="425">
           <caret line="25" column="36" lean-forward="true" selection-start-line="25" selection-start-column="36" selection-end-line="25" selection-end-column="36" />
 >>>>>>> 337d4c16ae8acee5eacf20d56f9332cc0f256960
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-178" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="383">
+          <caret line="42" column="1" lean-forward="true" selection-start-line="42" selection-start-column="1" selection-end-line="42" selection-end-column="1" />
         </state>
       </provider>
     </entry>
