@@ -35,6 +35,21 @@ public class MainDraftActivity extends AppCompatActivity {
     int j = 0;
     EditText editText,editTextSecond;
 
+    private String authEmail(){
+        auth = FirebaseAuth.getInstance();
+        authStateListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user == null) {
+                    Log.e("LogOn", "Login olmuş user yok");
+                }
+            }
+        };
+        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        return user.getEmail();
+    }
+
     private String realTime() {
         Date date = new Date();
         dateHour = String.format("%tT", date);
@@ -61,10 +76,17 @@ public class MainDraftActivity extends AppCompatActivity {
 
     private void sendEmailforDoors(String statusDoor, String doorName) {
         //Getting content for email
-        String email = sharedInfos();
+       // String email = sharedInfos();
         String subject = "Capstone0443 Security Mail ";
         String message = "Your " + doorName + " " + statusDoor + " at " + realTime();
-        SendMail sm = new SendMail(this, email, subject, message);
+        SendMail sm = new SendMail(this, authEmail(), subject, message);
+        sm.execute();
+    }
+    private void sendEmailforTemps(String statusTemp, String tempName) {
+        //Getting content for email
+        String subject = "Capstone0443 Security Mail ";
+        String message = "Your " + tempName + " " + statusTemp + " at " + realTime();
+        SendMail sm = new SendMail(this, authEmail(), subject, message);
         sm.execute();
     }
 
@@ -73,7 +95,7 @@ public class MainDraftActivity extends AppCompatActivity {
         String email = sharedInfos();
         String subject = "Capstone0443 Security Mail ";
         String message = "Your " + PirName + " " + statusPir + " at " + realTime();
-        SendMail sm = new SendMail(this, email, subject, message);
+        SendMail sm = new SendMail(this, authEmail(), subject, message);
         sm.execute();
     }
 
@@ -322,12 +344,15 @@ public class MainDraftActivity extends AppCompatActivity {
                 if(temp==1){
                     newTemperature(""+email,"Temp" + a, "" + editText.getText(), "" + dateHour, "" + dateDay);
                     newHistoryTemps(""+email,"Temp" + a, "" + dateDay, "" + dateHour, "" + editText.getText());
+                    sendEmailforTemps(""+editText.getText(),"Temp" +a);
                 }
                 else if(temp==2){
                     newTemperature(""+email,"Temp" + a, "" + editText.getText(), "" + dateHour, "" + dateDay);
                     newHistoryTemps(""+email,"Temp" + a, "" + dateDay, "" + dateHour, "" + editText.getText());
+                    sendEmailforTemps(""+editText.getText(),"Temp" +a);
                     newTemperature(""+email,"Temp" + b, "" + editTextSecond.getText(), "" + dateHour, "" + dateDay);
                     newHistoryTemps(""+email,"Temp" + b, "" + dateDay, "" + dateHour, "" + editTextSecond.getText());
+                    sendEmailforTemps(""+editTextSecond.getText(),"Temp" +b);
                 }
 
             }
