@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Capstone-0443</string>
+    <string name="app_name">Mobile Security</string>
     <string name="title_door">DOOR</string>
     <string name="title_temperature">TEMPERATURE</string>
     <string name="title_pir">PIR</string>

@@ -15,7 +15,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
     EditText email, password;
@@ -26,7 +25,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.login);
+        setContentView(R.layout.activity_login);
         password =  findViewById(R.id.password);
         email =  findViewById(R.id.email);
         loginButton = findViewById(R.id.loginButton);
@@ -64,7 +63,7 @@ public class LoginActivity extends AppCompatActivity {
                             Log.d(TAG, "signInWithEmail:success");
                             //FirebaseUser user = auth.getCurrentUser();
 
-                            Intent intent = new Intent(LoginActivity.this,UserActivity.class);
+                            Intent intent = new Intent(LoginActivity.this,AndroidActivity.class);
                             Toast.makeText(getApplicationContext(),"başarılı",Toast.LENGTH_SHORT).show();
                             startActivity(intent);
                             //updateUI(user);

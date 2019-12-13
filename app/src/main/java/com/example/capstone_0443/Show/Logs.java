@@ -44,7 +44,6 @@ public class Logs extends Fragment {
 
     private FirebaseAuth.AuthStateListener authStateListener;
     private FirebaseAuth auth;
-    private RecyclerView mRecyclerView;
     EditText logDay,logMonth,logYear;
     String day,month,year;
     ArrayList<String> ArrayListForDb=new ArrayList<String>();
@@ -53,12 +52,7 @@ public class Logs extends Fragment {
     DatabaseReference dref;
     TextView txt,tarih;
 
-    private static Integer[] Days = new Integer[]{
-            1,2,3,4
-    };
-    private static Integer[] Months = new Integer[]{
-            1,2,3,4
-    };
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -107,7 +101,7 @@ public class Logs extends Fragment {
 
         txt.setText("");
         Log.d("TAG", "Before attaching the listener!");
-        dref.child(email).child("Logs").addValueEventListener(new ValueEventListener() {
+        dref.child("Users").child(email).child("Data").child("Logs").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 ArrayListForDb.clear();
@@ -158,7 +152,7 @@ public class Logs extends Fragment {
                 year = logYear.getText().toString();
 
                 x = year + "-" + month + "-" + day;
-                dref.child(email).child("Logs").addValueEventListener(new ValueEventListener() {
+                dref.child("Users").child(email).child("Logs").addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         txt.setText("");
@@ -215,11 +209,11 @@ public class Logs extends Fragment {
         int id = item.getItemId();
         switch (id) {
             case R.id.door:
-                show();
+
                 return true;
 
             case R.id.pir:
-                showPir();
+
                 // do more stuff
                 return true;
             case R.id.temperature:
@@ -229,58 +223,8 @@ public class Logs extends Fragment {
 
         return false;
     }
-    public void show(){
-        dref = FirebaseDatabase.getInstance().getReference();
-        dref.child("Doors").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                txt.setText("");
-
-                for (DataSnapshot gelenler: dataSnapshot.getChildren()) {
-                    txt.append(gelenler.getValue(com.example.capstone_0443.Model.Door.class).getDoorName()+"\t");
-                    txt.append(gelenler.getValue(com.example.capstone_0443.Model.Door.class).getDoorStatus()+"\t");
-                    txt.append(gelenler.getValue(com.example.capstone_0443.Model.Door.class).getDoorDay()+"\t");
-                    txt.append(gelenler.getValue(com.example.capstone_0443.Model.Door.class).getDoorHour()+"\n");
-
-                }
 
 
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-
-    }
-    public void showPir(){
-        dref = FirebaseDatabase.getInstance().getReference();
-        dref.child("PIRs").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                txt.setText("");
-
-                for (DataSnapshot gelenler: dataSnapshot.getChildren()) {
-                    txt.append(gelenler.getValue(com.example.capstone_0443.Model.PIR.class).getPirName()+"\t");
-                    txt.append(gelenler.getValue(com.example.capstone_0443.Model.PIR.class).getPirDay()+"\t");
-                    txt.append(gelenler.getValue(com.example.capstone_0443.Model.PIR.class).getPirHour()+"\n");
-                    txt.append(gelenler.getValue(com.example.capstone_0443.Model.PIR.class).getPirStatus()+"\t");
-
-                }
-
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-
-    }
 
 
 

@@ -69,7 +69,7 @@ public class Door extends Fragment  {
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        dref=FirebaseDatabase.getInstance().getReference().child(email).child("Doors");
+        dref=FirebaseDatabase.getInstance().getReference().child("Users").child(email).child("Data").child("Doors");
 
         return view;
 

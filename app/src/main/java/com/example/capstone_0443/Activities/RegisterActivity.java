@@ -13,16 +13,18 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.capstone_0443.Model.User;
 import com.example.capstone_0443.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class RegisterActivity extends AppCompatActivity {
 
     private FirebaseAuth auth;
-    EditText email,password;
+    EditText email,password,username;
     TextView register;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,23 +36,28 @@ public class RegisterActivity extends AppCompatActivity {
         email=findViewById(R.id.email);
         password=findViewById(R.id.password);
         register=findViewById(R.id.register);
+        username=findViewById(R.id.username);
 
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String userMail = email.getText().toString();
-                String userPassword = password.getText().toString();
+                final String userMail = email.getText().toString();
+                final String userPassword = password.getText().toString();
+                final String userName=username.getText().toString();
 
                 if(TextUtils.isEmpty(userMail)){
-                    Toast.makeText(getApplicationContext(),"Lütfen emailinizi giriniz",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"Please enter your e-mail.",Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if(TextUtils.isEmpty(userPassword)){
-                    Toast.makeText(getApplicationContext(),"Lütfen parolanızı giriniz",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"Please enter your password.",Toast.LENGTH_SHORT).show();
+                }
+                if(TextUtils.isEmpty(userName)){
+                    Toast.makeText(getApplicationContext(),"Please enter your username.",Toast.LENGTH_SHORT).show();
                 }
                 if (userPassword.length()<6){
-                    Toast.makeText(getApplicationContext(),"Parola en az 6 haneli olmalıdır",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"Password must be at least 6 digits",Toast.LENGTH_SHORT).show();
                 }
 
                 //FirebaseAuth ile email,parola parametrelerini kullanarak yeni bir kullanıcı oluşturuyoruz.
@@ -67,6 +74,27 @@ public class RegisterActivity extends AppCompatActivity {
 
                                 //İşlem başarılı olduğu takdir de giriş yapılıp MainActivity e yönlendiriyoruz.
                                 else {
+
+
+                                    User user = new User(userMail, userName, userPassword);
+
+                                    FirebaseDatabase.getInstance().getReference("Users")
+                                            .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                            .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+
+                                            if (task.isSuccessful()) {
+                                                Toast.makeText(RegisterActivity.this, "Registered Successfully", Toast.LENGTH_LONG).show();
+                                            } else {
+                                                //display a failure message
+                                            }
+                                        }
+                                    });
+
+
+
+
                                     startActivity(new Intent(RegisterActivity.this, MainActivity.class));
                                     finish();
                                 }

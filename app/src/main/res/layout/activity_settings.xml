@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="25dp"
+    android:layout_weight="1"
+    tools:context=".Activities.SettingsActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:autoSizeMaxTextSize="@dimen/mdtp_ampm_label_size"
+            android:gravity="center"
+            android:text="Please enter the time intervals for notification of temperature values ​​by e-mail"
+            android:textSize="15sp"></TextView>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_weight="2"
+        android:orientation="horizontal">
+
+
+        <MultiAutoCompleteTextView
+            android:id="@+id/hourFirst"
+            android:layout_width="122dp"
+            android:completionThreshold="1"
+            android:layout_height="49dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:hint="Starting Time" />
+
+        <ImageView
+            android:id="@+id/image1"
+            android:layout_width="21dp"
+            android:layout_height="38dp"
+            android:layout_gravity="center"
+            android:src="@drawable/arrow" />
+
+        <MultiAutoCompleteTextView
+            android:id="@+id/hourSecond"
+            android:layout_width="122dp"
+            android:layout_height="49dp"
+            android:completionThreshold="1"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:hint="Finishing Time" />
+
+        <ImageView
+            android:id="@+id/imageSecond"
+            android:layout_width="21dp"
+            android:layout_height="38dp"
+            android:layout_gravity="center"
+            android:src="@drawable/arrow" />
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:orientation="vertical">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:textSize="15dp"
+        android:padding="10dp"
+        android:gravity="center"
+        android:layout_weight="1"
+        android:text="Please enter the temperature degree to get notification what you want."></TextView>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_weight="2"
+        android:orientation="horizontal">
+
+
+        <MultiAutoCompleteTextView
+            android:id="@+id/tempFirst"
+            android:layout_width="122dp"
+            android:layout_height="49dp"
+            android:completionThreshold="1"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:hint="Tempreature 1" />
+
+        <ImageView
+            android:id="@+id/imgFirst"
+            android:layout_width="21dp"
+            android:layout_height="38dp"
+            android:layout_gravity="center"
+            android:src="@drawable/arrow" />
+
+        <MultiAutoCompleteTextView
+            android:id="@+id/tempSecond"
+            android:completionThreshold="1"
+            android:layout_width="122dp"
+            android:layout_height="49dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:hint="Temperature 2" />
+
+        <ImageView
+            android:id="@+id/imgSecond"
+            android:layout_width="21dp"
+            android:layout_height="38dp"
+            android:layout_gravity="center"
+            android:src="@drawable/arrow" />
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <Button
+            android:id="@+id/buttonLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_below="@+id/imageView"
+            android:layout_gravity="center"
+            android:background="@drawable/custom_button"
+            android:text="Save Changes"
+            android:textColor="@color/colorWhite"
+            android:textSize="20dp"
+
+            />
+    </LinearLayout>
+
+
+</LinearLayout>

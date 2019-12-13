@@ -68,8 +68,7 @@ public class Pir extends Fragment {
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        dref=FirebaseDatabase.getInstance().getReference().child(email).child("PIRs");
-
+        dref=FirebaseDatabase.getInstance().getReference().child("Users").child(email).child("Data").child("PIRs");
         return view;
 
     }

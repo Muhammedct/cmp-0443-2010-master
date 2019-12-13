@@ -70,9 +70,7 @@ public class Temperature extends Fragment {
         mRecyclerView=view.findViewById(R.id.recyclerView);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
-        dref=FirebaseDatabase.getInstance().getReference().child(email).child("Temps");
-
+        dref=FirebaseDatabase.getInstance().getReference().child("Users").child(email).child("Data").child("Temps");
 
         return view;
     }

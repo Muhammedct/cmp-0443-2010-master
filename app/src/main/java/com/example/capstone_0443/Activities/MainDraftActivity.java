@@ -106,34 +106,34 @@ public class MainDraftActivity extends AppCompatActivity {
 
     private void newDoor(String userName,String doorName, String status, String hour, String day) {
         Door doors = new Door(userName,doorName, day, hour, status);
-        testRef.child(userName).child("Doors").child(doorName).setValue(doors);
+        testRef.child("Users").child(userName).child("Data").child("Doors").child(doorName).setValue(doors);
     }
 
     private void newTemperature(String userName,String temperatureName, String status, String hour, String day) {
         Temperature temperature = new Temperature(userName,status, day, hour, temperatureName);
-        testRef.child(userName).child("Temps").child(temperatureName).setValue(temperature);
+        testRef.child("Users").child(userName).child("Data").child("Temps").child(temperatureName).setValue(temperature);
         // DatabaseReference tempRef = testRef.child("Temps").child(name);
         //  tempRef.setValue(temperature);
 
     }
     private void newPIR(String userName,String status, String pirName, String hour, String day) {
         PIR Pirs = new PIR(userName,status, pirName, hour, day);
-        testRef.child(userName).child("PIRs").child(pirName).setValue(Pirs);
+        testRef.child("Users").child(userName).child("Data").child("PIRs").child(pirName).setValue(Pirs);
     }
 
     private void newHistoryDoor(String userName,String name, String day, String hour, String status) {
         History logs = new History(userName,name, day, hour, status);
-        testRef.child(userName).child("Logs").child(day).child(name).child(hour).setValue(logs);
+        testRef.child("Users").child(userName).child("Data").child("Logs").child(day).child(name).child(hour).setValue(logs);
     }
 
     private void newHistoryPir(String userName,String name, String day, String hour, String status) {
         History logs = new History(userName,name, day, hour, status);
-        testRef.child(userName).child("Logs").child(day).child(name).child(hour).setValue(logs);
+        testRef.child("Users").child(userName).child("Data").child("Logs").child(day).child(name).child(hour).setValue(logs);
     }
 
     private void newHistoryTemps(String userName,String name, String day, String hour, String status) {
         History logs = new History(userName,name, day, hour, status);
-        testRef.child(userName).child("Logs").child(day).child(name).child(hour).setValue(logs);
+        testRef.child("Users").child(userName).child("Data").child("Logs").child(day).child(name).child(hour).setValue(logs);
     }
 
 
