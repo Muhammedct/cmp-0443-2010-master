@@ -38,10 +38,10 @@ import java.util.Collections;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class Logs extends Fragment {
-
     private FirebaseAuth.AuthStateListener authStateListener;
     private FirebaseAuth auth;
     EditText logDay,logMonth,logYear;
@@ -50,8 +50,9 @@ public class Logs extends Fragment {
     Button logSearch,logClear;
     History forLogDataSnapShot = new History();
     DatabaseReference dref;
-    TextView txt,tarih;
-
+    TextView txt;
+    String name,hour,status,historyDay;
+    private RecyclerView mRecyclerView;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -81,9 +82,7 @@ public class Logs extends Fragment {
                 }
             }
         };
-        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        final String email = user.getUid();
-        Log.e("LogIn", "User Email : ---- "+user.getEmail());
+
 
 
         //-------
@@ -94,109 +93,78 @@ public class Logs extends Fragment {
         logMonth=view.findViewById(R.id.logMonth);
         logYear=view.findViewById(R.id.logYear);
         logClear=view.findViewById(R.id.logClear);
-        txt = view.findViewById(R.id.androidLogsText);
+        //txt = view.findViewById(R.id.androidLogsText);
         // tarih=view.findViewById(R.id.tarih);
+
+        mRecyclerView=view.findViewById(R.id.recyclerView);
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         dref = FirebaseDatabase.getInstance().getReference();
 
-        txt.setText("");
-        Log.d("TAG", "Before attaching the listener!");
-        dref.child("Users").child(email).child("Data").child("Logs").addValueEventListener(new ValueEventListener() {
+
+
+        return view;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        FirebaseRecyclerOptions options = new FirebaseRecyclerOptions.Builder<com.example.capstone_0443.Model.History>().setQuery(dref, com.example.capstone_0443.Model.History.class).build();
+        FirebaseRecyclerAdapter<com.example.capstone_0443.Model.History, ViewHolder> adapter = new FirebaseRecyclerAdapter<History, ViewHolder>(options) {
+            @NonNull
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                ArrayListForDb.clear();
-                txt.setText("");
-                forLogDataSnapShot = dataSnapshot.getValue(History.class);
-                for (DataSnapshot datas : dataSnapshot.getChildren()) {
-                    for (DataSnapshot datass : datas.getChildren()){
-                        for (DataSnapshot datasss : datass.getChildren()) {
-                            ArrayListForDb.add(datasss.getValue(History.class).getHistoryDay() + "--" + "\t" +
-                                    datasss.getValue(History.class).getHistoryName() + "--" + "\t" +
-                                    datasss.getValue(History.class).getStatus() + "--" + "\t" +
-                                    datasss.getValue(History.class).getHistoryHour() + "--" + "\n");
+            public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.show, parent, false);
 
-                        }
-                    }
-                }
-                Collections.reverse(ArrayListForDb);
-                int ArrayNumber = ArrayListForDb.size();
-
-                if(ArrayNumber>18 ){
-                    for (int i = 0; i < 18; i++) {
-                        txt.append(ArrayListForDb.get(i) + "\t");
-
-                    }
-
-                }
-                else{
-                    for (int i = 0; i < ArrayListForDb.size(); i++) {
-                        txt.append(ArrayListForDb.get(i) + "\t");
-
-                    }
-                }
-
+                ViewHolder viewHolder = new ViewHolder(view);
+                return viewHolder;
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+            protected void onBindViewHolder(@NonNull final ViewHolder ViewHolder, int i, @NonNull History history) {
+                final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                final String userUid = user.getUid();
 
-            }
-        });
-        logSearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ArrayListForDb.clear(); // for clear past data
-                final String x;
-                day = logDay.getText().toString();
-                month = logMonth.getText().toString();
-                year = logYear.getText().toString();
-
-                x = year + "-" + month + "-" + day;
-                dref.child("Users").child(email).child("Logs").addValueEventListener(new ValueEventListener() {
+                dref.child("Users").child(userUid).child("Data").child("Logs").addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        txt.setText("");
-                        forLogDataSnapShot = dataSnapshot.getValue(History.class);
+
                         for (DataSnapshot datas : dataSnapshot.getChildren()) {
-                            if (datas.getKey().matches(x)) {
-                                for (DataSnapshot datass : datas.getChildren()) {
-                                    for (DataSnapshot datasss : datass.getChildren()) {
 
+                            for (DataSnapshot datass : datas.getChildren()) {
+                                for (DataSnapshot datasss : datass.getChildren()) {
 
-                                        ArrayListForDb.add(datasss.getValue(History.class).getHistoryDay() + "--" + "\t" +
-                                                datasss.getValue(History.class).getHistoryName() + "--" + "\t" +
-                                                datasss.getValue(History.class).getStatus() + "--" + "\t" +
-                                                datasss.getValue(History.class).getHistoryHour() + "--" + "\n");
+                                        {
+                                            historyDay=   datasss.getValue(History.class).getHistoryDay();
+                                            name = datasss.getValue(History.class).getHistoryName();
+                                            status =datasss.getValue(History.class).getStatus();
+                                            hour = datasss.getValue(History.class).getHistoryHour();
 
+                                            ViewHolder.name.setText(name);
+                                            ViewHolder.status.setText(status);
+                                            ViewHolder.day.setText(historyDay);
+                                            ViewHolder.hour.setText(hour);
+                                        }
 
-                                    }
                                 }
-                            } else {
-                                ArrayListForDb.clear();
-                                txt.append("Geçersiz/kaydı olmayan tarih seçildi");
-
-                        }
-
-                            for (int i = 0; i < ArrayListForDb.size(); i++) {
-                                txt.append(ArrayListForDb.get(i) + "\t");
-
                             }
                         }
+
+
                     }
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
 
                     }
+
                 });
             }
-
-
-        });
-        return view;
+        };
+        mRecyclerView.setAdapter(adapter);
+        adapter.startListening();
     }
-
-
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {

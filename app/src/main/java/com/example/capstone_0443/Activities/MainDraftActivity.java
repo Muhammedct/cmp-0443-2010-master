@@ -342,17 +342,30 @@ public class MainDraftActivity extends AppCompatActivity {
                 dateDay = String.format("%tF", dateTemp);
 
                 if(temp==1){
-                    newTemperature(""+email,"Temp" + a, "" + editText.getText(), "" + dateHour, "" + dateDay);
-                    newHistoryTemps(""+email,"Temp" + a, "" + dateDay, "" + dateHour, "" + editText.getText());
-                    sendEmailforTemps(""+editText.getText(),"Temp" +a);
+                   if(editText.getText().equals("")){
+                       Toast.makeText(getApplicationContext(), "Temperature value is null", Toast.LENGTH_LONG).show();
+                   }
+                   else{
+
+                       newTemperature(""+email,"Temp" + a, "" + editText.getText(), "" + dateHour, "" + dateDay);
+                       newHistoryTemps(""+email,"Temp" + a, "" + dateDay, "" + dateHour, "" + editText.getText());
+                       sendEmailforTemps(""+editText.getText(),"Temp" +a);
+                   }
+
                 }
                 else if(temp==2){
-                    newTemperature(""+email,"Temp" + a, "" + editText.getText(), "" + dateHour, "" + dateDay);
-                    newHistoryTemps(""+email,"Temp" + a, "" + dateDay, "" + dateHour, "" + editText.getText());
-                    sendEmailforTemps(""+editText.getText(),"Temp" +a);
-                    newTemperature(""+email,"Temp" + b, "" + editTextSecond.getText(), "" + dateHour, "" + dateDay);
-                    newHistoryTemps(""+email,"Temp" + b, "" + dateDay, "" + dateHour, "" + editTextSecond.getText());
-                    sendEmailforTemps(""+editTextSecond.getText(),"Temp" +b);
+                    if(editText.getText()==null){
+                        Toast.makeText(getApplicationContext(), "Temperature value is null", Toast.LENGTH_LONG).show();
+                    }
+                    else {
+                        newTemperature(""+email,"Temp" + a, "" + editText.getText(), "" + dateHour, "" + dateDay);
+                        newHistoryTemps(""+email,"Temp" + a, "" + dateDay, "" + dateHour, "" + editText.getText());
+                        sendEmailforTemps(""+editText.getText(),"Temp" +a);
+                        newTemperature(""+email,"Temp" + b, "" + editTextSecond.getText(), "" + dateHour, "" + dateDay);
+                        newHistoryTemps(""+email,"Temp" + b, "" + dateDay, "" + dateHour, "" + editTextSecond.getText());
+                        sendEmailforTemps(""+editTextSecond.getText(),"Temp" +b);
+                    }
+
                 }
 
             }
