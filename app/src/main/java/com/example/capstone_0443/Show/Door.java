@@ -93,7 +93,7 @@ public class Door extends Fragment  {
             }
 
             @Override
-            protected void onBindViewHolder(@NonNull final ViewHolder ViewHolder, int i, @NonNull com.example.capstone_0443.Model.Door door) {
+            protected void onBindViewHolder(@NonNull final ViewHolder ViewHolder, int i, @NonNull final com.example.capstone_0443.Model.Door door) {
 
                 String doorID= getRef(i).getKey();
                 dref.child(doorID).addValueEventListener(new ValueEventListener() {
@@ -109,8 +109,6 @@ public class Door extends Fragment  {
                             ViewHolder.status.setText(status);
                             ViewHolder.day.setText(day);
                             ViewHolder.hour.setText(hour);
-
-
 
 
 

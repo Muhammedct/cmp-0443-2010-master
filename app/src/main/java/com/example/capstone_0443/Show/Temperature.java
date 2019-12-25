@@ -96,7 +96,7 @@ public class Temperature extends Fragment {
             }
 
             @Override
-            protected void onBindViewHolder(@NonNull final ViewHolder ViewHolder, int i, @NonNull com.example.capstone_0443.Model.Temperature temperature) {
+            protected void onBindViewHolder(@NonNull final ViewHolder ViewHolder, int i, @NonNull final com.example.capstone_0443.Model.Temperature temperature) {
 
                 String doorID= getRef(i).getKey();
                 dref.child(doorID).addValueEventListener(new ValueEventListener() {

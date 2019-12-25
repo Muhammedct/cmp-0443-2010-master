@@ -17,12 +17,14 @@ public  class ViewHolder extends RecyclerView.ViewHolder{
     public  TextView day;
     public  TextView hour;
 
+    View v;
     public ViewHolder(@NonNull View itemView) {
         super(itemView);
+        v=itemView;
         name=itemView.findViewById(R.id.name);
         status=itemView.findViewById(R.id.status);
         day=itemView.findViewById(R.id.day);
         hour=itemView.findViewById(R.id.hour);
 
     }
-}
+  }

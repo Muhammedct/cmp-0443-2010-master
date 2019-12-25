@@ -93,7 +93,7 @@ public class Pir extends Fragment {
             }
 
             @Override
-            protected void onBindViewHolder(@NonNull final ViewHolder ViewHolder, int i, @NonNull com.example.capstone_0443.Model.PIR pir) {
+            protected void onBindViewHolder(@NonNull final ViewHolder ViewHolder, int i, @NonNull final com.example.capstone_0443.Model.PIR pir) {
 
                 String doorID= getRef(i).getKey();
                 dref.child(doorID).addValueEventListener(new ValueEventListener() {
