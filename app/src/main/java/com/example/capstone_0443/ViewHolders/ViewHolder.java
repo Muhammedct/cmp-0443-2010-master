@@ -5,6 +5,8 @@ import android.widget.TextView;
 
 import com.example.capstone_0443.R;
 
+import java.text.BreakIterator;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -12,7 +14,7 @@ public  class ViewHolder extends RecyclerView.ViewHolder{
 
     public  TextView name;
     public  TextView status;
-    public TextView day;
+    public  TextView day;
     public  TextView hour;
 
     public ViewHolder(@NonNull View itemView) {

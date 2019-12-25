@@ -16,11 +16,13 @@
         <EditText
             android:layout_gravity="center"
             android:id="@+id/email"
+
             android:hint="E-mail "
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
+
             android:inputType="textEmailAddress" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -31,11 +33,13 @@
             android:layout_gravity="center"
             android:id="@+id/username"
             android:hint="Username"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
             android:inputType="textEmailAddress" />
+
     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -43,6 +47,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
         app:passwordToggleEnabled="true">
         <EditText
             android:id="@+id/password"

@@ -42,7 +42,6 @@ public class Temperature extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        //-------
 
         auth = FirebaseAuth.getInstance();
         authStateListener = new FirebaseAuth.AuthStateListener() {
@@ -64,7 +63,7 @@ public class Temperature extends Fragment {
         Log.e("LogIn", "User Email : ---- "+user.getEmail());
 
 
-        //-------
+
 
         View view=inflater.inflate(R.layout.activity_android_temps,null);
         mRecyclerView=view.findViewById(R.id.recyclerView);

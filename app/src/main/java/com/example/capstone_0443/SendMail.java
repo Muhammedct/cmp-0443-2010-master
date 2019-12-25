@@ -39,6 +39,7 @@ public class SendMail extends AsyncTask<Void,Void,Void> {
         this.email = email;
         this.subject = subject;
         this.message = message;
+
     }
 
     @Override
@@ -92,7 +93,7 @@ public class SendMail extends AsyncTask<Void,Void,Void> {
             mm.setSubject(subject);
             //Adding message
             mm.setText(message);
-
+            mm.setContent( message ,"text/html");
             //Sending email
             Transport.send(mm);
 
