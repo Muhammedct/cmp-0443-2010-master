@@ -114,6 +114,16 @@ public class MainDraftActivity extends AppCompatActivity {
         SendMail sm = new SendMail(this, authEmail(), subject, message);
         sm.execute();
     }
+    private void sendEmailforTemps2(String statusTemp, String tempName, Integer limitValue) {
+        //Getting content for email
+        String subject = "Capstone0443 Security Mail ";
+        String message = "Your" + " temperature sensor" + "( " + tempName + " )" + " has exceeded the expected value" +
+                "<p>" + "Detected temperature : " + "<font size=\"3\" color=\"red\"> <b>"+statusTemp +"</b>"+ "</p> </font>" +
+                "<p>" + "Expected temperature : " + "<b>"+limitValue +"</b>"+ "</p>"+
+                "\n" + " at " + realTime();
+        SendMail sm = new SendMail(this, authEmail(), subject, message);
+        sm.execute();
+    }
 
     private void sendEmailforPir(String statusPir, String PirName) {
         //Getting content for email
@@ -378,10 +388,11 @@ public class MainDraftActivity extends AppCompatActivity {
                                 newHistoryTemps("" + userUid, "Temp" + a, "" + dateDay, "" + dateHour, "" + editText.getText());
                                 if (temp1Final > sharedInfosTemp1())
                                     sendEmailforTemps("" + editText.getText(), "Temp" + a, sharedInfosTemp1());
+
                                 newTemperature("" + userUid, "Temp" + b, "" + editTextSecond.getText(), "" + dateHour, "" + dateDay);
                                 newHistoryTemps("" + userUid, "Temp" + b, "" + dateDay, "" + dateHour, "" + editTextSecond.getText());
                                 if (temp2Final > sharedInfosTemp2())
-                                    sendEmailforTemps("" + editTextSecond.getText(), "Temp" + b, sharedInfosTemp2());
+                                    sendEmailforTemps2("" + editTextSecond.getText(), "Temp" + b, sharedInfosTemp2());
                             }
 
 
