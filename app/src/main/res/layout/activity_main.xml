@@ -10,57 +10,21 @@
     android:background="@drawable/gradient"
     >
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="0dp"
-    android:layout_weight="2">
-
-    <ImageView
-        android:layout_weight="1"
-        android:id="@+id/imageView"
-        android:layout_width="179dp"
-        android:layout_height="186dp"
-        android:layout_gravity="center"
-        app:srcCompat="@drawable/security" />
-</LinearLayout>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
 
-        <Button
-            android:id="@+id/buttonLogin"
-            android:layout_width="162dp"
-            android:layout_height="66dp"
-            android:layout_weight="1"
-            android:layout_below="@+id/imageView"
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="179dp"
+            android:layout_height="186dp"
             android:layout_gravity="center"
-            android:background="@drawable/custom_button"
-            android:text="Login"
-            android:textColor="@color/colorWhite"
-            android:textSize="20dp"
-
-            />
+            android:layout_weight="1"
+            app:srcCompat="@drawable/security" />
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
-        <Button
-            android:id="@+id/buttonRegister"
-            android:layout_width="162dp"
-            android:layout_below="@+id/buttonLogin"
-            android:textColor="@color/colorWhite"
-            android:layout_height="66dp"
-            android:layout_weight="1"
-            android:background="@drawable/custom_button"
-            android:text="Register"
-            android:textSize="20dp"
-            android:layout_gravity="center"
-            />
-    </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -86,13 +50,14 @@
         android:layout_height="0dp"
         android:layout_weight="1">
         <Button
+            android:layout_marginBottom="@dimen/mdtp_material_button_height"
             android:id="@+id/buttontest"
             android:layout_width="162dp"
             android:layout_weight="1"
             android:textColor="@color/colorWhite"
             android:layout_height="66dp"
             android:background="@drawable/custom_button"
-            android:text="arduıno"
+            android:text="Sımulatıon"
             android:textSize="20dp"
             android:layout_below="@+id/buttonAndroid"
             android:layout_gravity="center" />

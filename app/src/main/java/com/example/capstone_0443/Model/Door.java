@@ -9,8 +9,7 @@ public class Door {
     public String doorHour;
 
 
-    public Door() {
-    }
+    public Door() { }
 
 
 

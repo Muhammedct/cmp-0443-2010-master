@@ -20,7 +20,7 @@
             android:layout_height="match_parent"
             android:autoSizeMaxTextSize="@dimen/mdtp_ampm_label_size"
             android:gravity="center"
-            android:text="Please enter the time intervals for notification of temperature values ​​by e-mail"
+            android:text="Define the time interval you want to be notified by e-mail (00 -24 )  "
             android:textSize="15sp"></TextView>
 
     </LinearLayout>
@@ -35,11 +35,13 @@
         <MultiAutoCompleteTextView
             android:id="@+id/hourFirst"
             android:layout_width="122dp"
-            android:completionThreshold="1"
             android:layout_height="49dp"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:hint="Starting Time" />
+            android:completionThreshold="1"
+            android:hint="StartingTime(17) "
+            android:inputType="number"
+            android:maxLength="2"/>
 
         <ImageView
             android:id="@+id/image1"
@@ -52,10 +54,12 @@
             android:id="@+id/hourSecond"
             android:layout_width="122dp"
             android:layout_height="49dp"
-            android:completionThreshold="1"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:hint="Finishing Time" />
+            android:completionThreshold="1"
+            android:hint="FinishingTime(06)"
+            android:inputType="number"
+            android:maxLength="2"/>
 
         <ImageView
             android:id="@+id/imageSecond"
@@ -70,9 +74,18 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_gravity="center"
-        android:layout_weight="1"
+        android:layout_weight="2"
         android:orientation="vertical">
-    <TextView
+
+        <TextView
+            android:id="@+id/resultShared"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:gravity="center"
+            android:text="Interval Time" ></TextView>
+
+        <TextView
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:textSize="15dp"
@@ -93,10 +106,12 @@
             android:id="@+id/tempFirst"
             android:layout_width="122dp"
             android:layout_height="49dp"
-            android:completionThreshold="1"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:hint="Tempreature 1" />
+            android:completionThreshold="1"
+            android:hint="Tempreature 1"
+            android:inputType="number"
+            android:maxLength="2"/>
 
         <ImageView
             android:id="@+id/imgFirst"
@@ -107,12 +122,14 @@
 
         <MultiAutoCompleteTextView
             android:id="@+id/tempSecond"
-            android:completionThreshold="1"
             android:layout_width="122dp"
             android:layout_height="49dp"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:hint="Temperature 2" />
+            android:completionThreshold="1"
+            android:hint="Temperature 2"
+            android:inputType="number"
+            android:maxLength="2"/>
 
         <ImageView
             android:id="@+id/imgSecond"

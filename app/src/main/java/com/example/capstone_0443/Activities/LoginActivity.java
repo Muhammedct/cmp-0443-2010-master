@@ -4,9 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,13 +25,17 @@ public class LoginActivity extends AppCompatActivity {
     TextView loginButton,registerButton;
     private String userEmail, userPassword;
     private FirebaseAuth auth;
+    private SharedPreferences sharedPreferences;
+    private static final String PREFS_NAME = "PrefsFile";
+    CheckBox chkBeniHatirla;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         password =  findViewById(R.id.password);
         email =  findViewById(R.id.email);
-        loginButton = findViewById(R.id.loginButton);
+       loginButton = findViewById(R.id.loginButton);
+        chkBeniHatirla=findViewById(R.id.chkBeniHatirla);
         registerButton = findViewById(R.id.registerButton);
         auth = FirebaseAuth.getInstance();
         registerButton.setOnClickListener(new View.OnClickListener() {
@@ -46,25 +53,59 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        sharedPreferences=getSharedPreferences(PREFS_NAME,MODE_PRIVATE);
+        getPreferencesData();
+
 
      }
+
+    private void getPreferencesData() {
+        SharedPreferences preferences = getSharedPreferences(PREFS_NAME,MODE_PRIVATE);
+        if(preferences.contains("pref_email")){
+            String m = preferences.getString("pref_email","not found");
+            email.setText(m.toString());
+        }
+        if(preferences.contains("user_password")){
+            String p = preferences.getString("user_password","not found");
+            password.setText(p.toString());
+        }
+        if(preferences.contains("pref_check")){
+            Boolean c = preferences.getBoolean("pref_check",false);
+            chkBeniHatirla.setChecked(c);
+        }
+    }
+
     private void login() {
         userEmail = email.getText().toString().trim();
         userPassword = password.getText().toString().trim();
 
-        auth.signInWithEmailAndPassword(userEmail, userPassword)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+
+        auth.signInWithEmailAndPassword(userEmail, userPassword).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
 
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
+                        if(chkBeniHatirla.isChecked()){
+
+                            Boolean boolIsChecked=chkBeniHatirla.isChecked();
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putString("pref_email",email.getText().toString());
+                            editor.putString("user_password",password.getText().toString());
+                            editor.putBoolean("pref_check",boolIsChecked);
+                            editor.apply();
+                            Toast.makeText(getApplicationContext(),"Your profile have been saved.",Toast.LENGTH_SHORT).show();
+                        }
+                        else if(!chkBeniHatirla.isChecked()){
+
+                            sharedPreferences.edit().clear().apply();
+                        }
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithEmail:success");
                             //FirebaseUser user = auth.getCurrentUser();
 
-                            Intent intent = new Intent(LoginActivity.this,AndroidActivity.class);
-                            Toast.makeText(getApplicationContext(),"başarılı",Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+                            //Toast.makeText(getApplicationContext(),"başarılı",Toast.LENGTH_SHORT).show();
                             startActivity(intent);
                             //updateUI(user);
                         } else {

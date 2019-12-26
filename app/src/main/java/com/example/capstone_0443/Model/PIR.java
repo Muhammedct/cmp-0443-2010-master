@@ -10,6 +10,7 @@ public class PIR {
     public PIR(){};
 
     public PIR(String userName,String pirStatus, String pirName, String pirHour, String pirDay) {
+        this.userName = userName;
         this.pirStatus = pirStatus;
         this.pirName = pirName;
         this.pirHour = pirHour;
