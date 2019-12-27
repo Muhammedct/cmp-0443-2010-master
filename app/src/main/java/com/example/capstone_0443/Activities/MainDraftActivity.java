@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.InputType;
 import android.util.Log;
 import android.view.View;
@@ -34,7 +35,7 @@ import java.util.Random;
 public class MainDraftActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener authStateListener;
     private FirebaseAuth auth;
-    public String dateHour, dateDay;
+    public String dateHour, dateDay , dateHour2,dateDay2;
     int j = 0;
     EditText editText, editTextSecond;
 
@@ -364,7 +365,7 @@ public class MainDraftActivity extends AppCompatActivity {
                     Date dateTemp = new Date();
                     dateHour = String.format("%tT", dateTemp);
                     dateDay = String.format("%tF", dateTemp);
-                    int temp1Final = Integer.parseInt(editText.getText().toString());
+                int temp1Final = Integer.parseInt(editText.getText().toString());
 
                     if (temp == 1) {
                         if (editText.getText().equals("")) {
@@ -378,22 +379,24 @@ public class MainDraftActivity extends AppCompatActivity {
 
                         }
 
-                    } else if (temp == 2) {
+                    } else {
                             int temp2Final = Integer.parseInt(editTextSecond.getText().toString());
-                            if (editText.getText() == null) {
-                                Toast.makeText(getApplicationContext(), "Temperature value is null", Toast.LENGTH_LONG).show();
-                            } else {
+
 
                                 newTemperature("" + userUid, "Temp" + a, "" + editText.getText(), "" + dateHour, "" + dateDay);
                                 newHistoryTemps("" + userUid, "Temp" + a, "" + dateDay, "" + dateHour, "" + editText.getText());
+
                                 if (temp1Final > sharedInfosTemp1())
                                     sendEmailforTemps("" + editText.getText(), "Temp" + a, sharedInfosTemp1());
 
                                 newTemperature("" + userUid, "Temp" + b, "" + editTextSecond.getText(), "" + dateHour, "" + dateDay);
-                                newHistoryTemps("" + userUid, "Temp" + b, "" + dateDay, "" + dateHour, "" + editTextSecond.getText());
+                                newHistoryTemps("" + userUid, "Temp" + b, "" + dateDay, "" + dateHour+1, "" + editTextSecond.getText());
+
+
+
                                 if (temp2Final > sharedInfosTemp2())
                                     sendEmailforTemps2("" + editTextSecond.getText(), "Temp" + b, sharedInfosTemp2());
-                            }
+
 
 
 
